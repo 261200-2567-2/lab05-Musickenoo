@@ -9,7 +9,7 @@ public class Shield implements Armor {
         this.defense = defense;
         this.durability = durability;
         this.runSpeedModifier = runSpeedModifier;
-        this.mana = mana; // กำหนดค่า mana
+        this.mana = mana;
     }
 
     @Override
