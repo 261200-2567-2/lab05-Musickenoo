@@ -1,15 +1,15 @@
-// คลาส Sword ที่สามารถใช้ได้ใน RPGCharacter
+// คลาส Sword
 public class Sword implements Weapon {
     private double damage;
     private double runSpeedModifier;
     private int durability;
-    private int mana; // เพิ่มฟิลด์ mana
+    private int mana;
 
     public Sword(double damage, double runSpeedModifier, int durability, int mana) {
         this.damage = damage;
         this.runSpeedModifier = runSpeedModifier;
         this.durability = durability;
-        this.mana = mana; // กำหนดค่า mana
+        this.mana = mana;
     }
 
     @Override
@@ -19,7 +19,7 @@ public class Sword implements Weapon {
 
     @Override
     public double getAttackSpeed() {
-        return 1.2; // ค่าความเร็วในการโจมตี
+        return 1.2;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class Sword implements Weapon {
     // เพิ่มฟังก์ชันในการใช้ mana
     public void useMana(int amount) {
         if (mana >= amount) {
-            mana -= amount; // ใช้ mana
+            mana -= amount;
             System.out.println("Used " + amount + " mana. Remaining mana: " + mana);
         } else {
             System.out.println("Not enough mana to use special attack.");

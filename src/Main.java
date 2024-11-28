@@ -1,30 +1,41 @@
 // Main
 public class Main {
     public static void main(String[] args) {
-        RPGCharacter fighter = new Fighter(3); // สร้าง Fighter ระดับ 3
-        RPGCharacter mage = new Mage(2); // สร้าง Mage ระดับ 2
+        RPGCharacter fighter = new Fighter(3);
+        RPGCharacter mage = new Mage(2);
 
-        // สร้างอุปกรณ์
-        Weapon sword = new Sword(50, 0.1, 100, 50); // สร้าง Sword พร้อม mana
-        Armor shield = new Shield(20, 5, 100, 30);  // สร้าง Shield พร้อม mana
+        Weapon Sticky = new Sword(50, 0.05, 100, 50);
+        Weapon Glass = new Sword(10, 0.05, 100, 500);
+        Armor Table = new Shield(20, 0.06, 100, 30);
 
-        // ทดสอบการใช้งาน
-        System.out.println("Fighter Stats:");
+        // Fighter Equip
+        System.out.println("\nFighter Stats:");
         fighter.printStats();
-        fighter.useAbility("Power Strike"); // ใช้ทักษะ Power Strike
-        ((Fighter) fighter).equipWeapon(sword); // Fighter สวมใส่อาวุธ
-        ((Fighter) fighter).equipArmor(shield); // Fighter สวมใส่ชุดเกราะ
-        System.out.println("Sword Mana: " + ((Sword) sword).getMana()); // แสดงค่า mana ของ Sword
+        ((Fighter) fighter).equipWeapon(Sticky);
+        System.out.println("\nFighter Stats (Equip):");
+        fighter.printStats();
 
+        // Mage Equip/Unequip
         System.out.println("\nMage Stats:");
         mage.printStats();
-        mage.useAbility("Fireball"); // ใช้ทักษะ Fireball
-        ((Mage) mage).equipWeapon(sword); // Mage สวมใส่อาวุธ
-        ((Mage) mage).equipArmor(shield); // Mage สวมใส่ชุดเกราะ
-        System.out.println("Shield Mana: " + ((Shield) shield).getMana()); // แสดงค่า mana ของ Shield
+        ((Mage) mage).equipWeapon(Glass);
+        ((Mage) mage).equipArmor(Table);
+        System.out.println("\nMage Stats (Equip):");
+        mage.printStats();
+        ((Mage) mage).unequipArmor();
 
-        // ทดสอบการใช้ mana
-        ((Sword) sword).useMana(10); // ใช้ mana จาก Sword
-        ((Shield) shield).useMana(15); // ใช้ mana จาก Shield
+
+        // Fighter Attacks Mage
+        System.out.println("\nFighter attacks Mage:");
+        ((Fighter) fighter).normalAttack((RPGCharacterBase) mage);
+
+        // Mage Attacks Fighter
+        System.out.println("\nMage attacks Fighter:");
+        ((Mage) mage).normalAttack((RPGCharacterBase) fighter);
+
+        // ability
+        mage.useAbility("\nFireball");
+        mage.printStats();
+
     }
 }

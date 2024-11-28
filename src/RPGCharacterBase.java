@@ -1,8 +1,9 @@
-// คลาสตัวละครพื้นฐานที่ใช้ในการอธิบาย RPGCharacter
+// RPGCharacterBase
 public class RPGCharacterBase implements RPGCharacter {
     private int level;
     private int hp;
     private int mana;
+    private double runSpeedModifier;
     private Equipable currentWeapon;
     private Equipable currentArmor;
 
@@ -10,6 +11,9 @@ public class RPGCharacterBase implements RPGCharacter {
         this.level = level;
         this.hp = 100 + 10 * level;
         this.mana = 50 + 5 * level;
+
+        double baseRunSpeed = 5;
+        this.runSpeedModifier = baseRunSpeed * (0.1 + 0.03 * level);
     }
 
     @Override
@@ -17,6 +21,9 @@ public class RPGCharacterBase implements RPGCharacter {
         level++;
         hp = 100 + 10 * level;
         mana = 50 + 5 * level;
+
+        double baseRunSpeed = 5;
+        this.runSpeedModifier = baseRunSpeed * (0.1 + 0.03 * level);
     }
 
     @Override
@@ -32,6 +39,11 @@ public class RPGCharacterBase implements RPGCharacter {
     @Override
     public int getLevel() {
         return level;
+    }
+
+    @Override
+    public double getRunSpeedModifier() {
+        return runSpeedModifier;
     }
 
     @Override
@@ -83,4 +95,12 @@ public class RPGCharacterBase implements RPGCharacter {
         System.out.println("HP: " + hp);
         System.out.println("Mana: " + mana);
     }
+    public void takeDamage(int damage) {
+        this.hp -= damage;
+        if (hp < 0) {
+            hp = 0;
+        }
+        System.out.println("Character takes " + damage + " damage, remaining HP: " + hp);
+    }
+
 }

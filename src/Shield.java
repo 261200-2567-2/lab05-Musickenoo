@@ -1,14 +1,14 @@
-// คลาส Shield สำหรับโล่ใน RPG
+// คลาส Shield
 public class Shield implements Armor {
     private double defense;
-    private double weight;
     private int durability;
-    private int mana; // เพิ่มฟิลด์ mana
+    private double runSpeedModifier;
+    private int mana;
 
-    public Shield(double defense, double weight, int durability, int mana) {
+    public Shield(double defense, double runSpeedModifier, int durability, int mana) {
         this.defense = defense;
-        this.weight = weight;
         this.durability = durability;
+        this.runSpeedModifier = runSpeedModifier;
         this.mana = mana; // กำหนดค่า mana
     }
 
@@ -17,15 +17,12 @@ public class Shield implements Armor {
         return defense;
     }
 
-    @Override
-    public double getWeight() {
-        return weight;
-    }
 
     @Override
     public int getDurability() {
         return durability;
     }
+
 
     @Override
     public void equip() {
@@ -39,7 +36,7 @@ public class Shield implements Armor {
 
     @Override
     public double getRunSpeedModifier() {
-        return -0.2; // ลดความเร็วในการวิ่ง
+        return runSpeedModifier;
     }
 
     // เพิ่มฟังก์ชันเพื่อดึงค่า mana

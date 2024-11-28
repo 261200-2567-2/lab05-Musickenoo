@@ -1,4 +1,4 @@
-// Equipable Interface สำหรับอุปกรณ์ที่สามารถสวมใส่ได้
+// Equipable Interface
 public interface Equipable {
     double getRunSpeedModifier();
     int getDurability();
