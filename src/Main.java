@@ -1,17 +1,41 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+// Main
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.print("Hello and welcome!");
+        RPGCharacter fighter = new Fighter(3);
+        RPGCharacter mage = new Mage(2);
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        Weapon Sticky = new Sword(50, 0.05, 100, 50);
+        Weapon Glass = new Sword(10, 0.05, 100, 500);
+        Armor Table = new Shield(20, 0.06, 100, 30);
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        // Fighter Equip
+        System.out.println("\nFighter Stats:");
+        fighter.printStats();
+        ((Fighter) fighter).equipWeapon(Sticky);
+        System.out.println("\nFighter Stats (Equip):");
+        fighter.printStats();
+
+        // Mage Equip/Unequip
+        System.out.println("\nMage Stats:");
+        mage.printStats();
+        ((Mage) mage).equipWeapon(Glass);
+        ((Mage) mage).equipArmor(Table);
+        System.out.println("\nMage Stats (Equip):");
+        mage.printStats();
+        ((Mage) mage).unequipArmor();
+
+
+        // Fighter Attacks Mage
+        System.out.println("\nFighter attacks Mage:");
+        ((Fighter) fighter).normalAttack((RPGCharacterBase) mage);
+
+        // Mage Attacks Fighter
+        System.out.println("\nMage attacks Fighter:");
+        ((Mage) mage).normalAttack((RPGCharacterBase) fighter);
+
+        // ability
+        mage.useAbility("\nFireball");
+        mage.printStats();
+
     }
 }
